@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
+const connectionString = 'mongodb://localhost:27017/mongo_playground';
 
-module.exports = () => {
- //TODO:
-}
+module.exports = mongoose.connect(connectionString);
