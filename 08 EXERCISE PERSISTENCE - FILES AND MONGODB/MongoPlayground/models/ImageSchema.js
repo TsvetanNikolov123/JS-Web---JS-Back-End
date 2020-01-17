@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const imageSchema = new mongoose.Schema({
-    url: {type: mongoose.SchemaTypes.String, required: true},
-    creationDate: {type: mongoose.SchemaTypes.Date, required: true, default: Date.now()},
-    description: {type: mongoose.SchemaTypes.String},
-    tags: [{type: mongoose.SchemaTypes.ObjectId, ref: 'Tag'}]
+const imageSchema = new Schema({
+    url: {type: Schema.Types.String, required: true},
+    title: {type: Schema.Types.String, required: true},
+    description: {type: Schema.Types.String},
+    creationDate: {type: Schema.Types.Date, default: Date.now},
+    tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}]
 });
-
-// const Image = new mongoose.model('Image', imageSchema);
-// module.exports = Image;
 
 module.exports = mongoose.model('Image', imageSchema);

@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "formidable": "^1.2.1",
-    "mongoose": "^5.4.5"
+    "mongodb": "^3.5.0",
+    "mongoose": "^5.8.7",
+    "valid-url": "^1.0.9"
   }
 }

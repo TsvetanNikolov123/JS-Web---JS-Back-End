@@ -8,6 +8,6 @@ for (let t of tagElements) {
         tagField.value += this.innerText + ',';
         tagsId.value += this.getAttribute('id') + ',';
 
-        console.log(tagsId.value)
-    })
+        console.log(tagsId.value);
+    });
 }

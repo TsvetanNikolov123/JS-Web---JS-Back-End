@@ -7,27 +7,28 @@ module.exports = (req, res) => {
         fs.readFile('./views/index.html', (err, data) => {
             if (err) {
                 console.log(err);
-                return
+                return;
             }
+
             res.writeHead(200, {
                 'Content-Type': 'text/html'
             });
 
-            let displayTags = '';
-
             Tag.find({}).then(tags => {
+                let dispalyTags = '';
+
                 for (let tag of tags) {
-                    displayTags += `<div class='tag' id="${tag._id}">${tag.tagName}</div>`;
+                    dispalyTags += `<div class='tag' id="${tag._id}">${tag.name}</div>`;
                 }
 
                 data = data
                     .toString()
-                    .replace(`<div class='replaceMe'></div>`, displayTags);
+                    .replace(`<div class='replaceMe'></div>`, dispalyTags);
 
                 res.end(data)
             });
         })
     } else {
-        return true
+        return true;
     }
 };
