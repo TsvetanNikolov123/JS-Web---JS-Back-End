@@ -1,0 +1,11 @@
+{
+  "name": "shopstop",
+  "version": "1.0.0",
+  "description": "\"Shop Stop\" is very simple product catalog website (like OLX, Amazon – but simpler).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TsvetanNikolov123",
+  "license": "MIT"
+}
