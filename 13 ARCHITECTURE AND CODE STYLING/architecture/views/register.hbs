@@ -1,0 +1,11 @@
+<form action="/users/register" method="POST">
+    Email:<input type="email" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" required>
+    <br/>
+    Password:<input type="password" name="password" minlength="6">
+    <br/>
+    First Name<input type="text" name="firstName" minlength="2" maxlength="30">
+    <br/>
+<!--    <input type="text" name="firstName" min-length="2" max-length="30">-->
+    Last Name<input type="text" name="lastName" minlength="2" maxlength="30">
+    <button type="submit">Register</button>
+</form>

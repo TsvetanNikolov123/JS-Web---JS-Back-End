@@ -9,7 +9,7 @@ module.exports = (app, rootPath) => {
     app.use(express.json());
     app.use(express.urlencoded({extended: false}));
     app.use(cookieParser());
-    app.use(express.static(path.join(rootPath, 'public')));
+    app.use(express.static(path.join(__dirname, rootPath, 'public')));
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {
