@@ -38,29 +38,41 @@ module.exports = {
             const carById = await Car.findById(car);
             carById.isRented = true;
             await carById.save();
+            req.user.rents.push(rent._id);
+            await req.user.save();
             res.redirect('/car/all');
         } catch (err) {
             console.log(err);
         }
-
-        /*Rent.create({days, user, car})
-            .then(() => {
-                Car.findById(car)
-                    .then((c) => {
-                        c.isRented = true;
-                        return c.save();
-                    })
-                    .then(() => {
-                        res.redirect('/car/all');
-                    })
-                    .catch(console.error);
+    },
+    editGet: (req, res) => {
+        const carId = req.params.id;
+        Car.findById(carId)
+            .then((car) => {
+                res.render('car/edit', car);
             })
-            .catch(console.error);*/
+            .catch(console.log)
     },
-    editGet: (re, res) => {
+    editPost: (req, res) => {
+        const carId = req.params.id;
+        const {model, imageUrl, pricePerDay} = req.body;
+        /*Car.findById(carId)
+            .then((car) => {
+                car.model = model;
+                car.imageURL = imageUrl;
+                car.pricePerDay = pricePerDay;
+                return car.save();
+            })
+            .then(() => {
+                res.redirect('/car/all');
+            })
+            .catch(console.log)*/
 
-    },
-    editPost: (re, res) => {
-
+        const updatedCar = {model, imageUrl, pricePerDay};
+        Car.findByIdAndUpdate(carId, updatedCar)
+            .then(() => {
+                res.redirect('/car/all')
+            })
+            .catch(console.log);
     }
 };
