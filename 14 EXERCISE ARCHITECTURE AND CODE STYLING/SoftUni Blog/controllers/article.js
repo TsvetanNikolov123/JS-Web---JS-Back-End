@@ -21,7 +21,16 @@ module.exports = {
             .catch(console.error);
     },
     details: (req, res) => {
-
+        const articleId = req.params.articleId;
+        Article.findById(articleId)
+            .then((article) => {
+                let isAuthor = false;
+                if (req.user) {
+                    isAuthor = req.user.isAuthor(article);
+                }
+                res.render('article/details', {article, isAuthor});
+            })
+            .catch(console.error);
     },
     editGet: (req, res) => {
 
@@ -33,6 +42,18 @@ module.exports = {
 
     },
     deletePost: (req, res) => {
-
+        let articleId = req.params.articleId;
+        Article.findById(articleId)
+            .then((a) => {
+                return Article.findByIdAndDelete(a._id);
+            })
+            .then(() => {
+                req.user.articles = req.user.articles.filter(a !== articleId);
+                return req.user.save();
+            })
+            .then(() => {
+                res.redirect('/');
+            })
+            .catch(console.error);
     },
 };

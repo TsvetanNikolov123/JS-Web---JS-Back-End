@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const Schema = mongoose.Schema;
 
 const articleSchema = new Schema({
     title: {type: Schema.Types.String, require: true},
