@@ -22,28 +22,24 @@ let userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    articles: [
+        {type: mongoose.Schema.Types.ObjectId, ref: 'Article'}
+    ]
 }, {
     usePushEach: true
 });
 
-
 userSchema.method({
     authenticate: function (password) {
         let inputPasswordHash = encryption.hashPassword(password, this.salt);
-        let isSamePasswordHash = inputPasswordHash === this.passwordHash;
-        return isSamePasswordHash;
+        return inputPasswordHash === this.passwordHash;
     },
-
     isAuthor: function (article) {
         if (!article) {
             return false;
         }
-
-        let isAuthor = article.author.equals(this.id);
-
-        return isAuthor;
+        return article.author.equals(this.id);
     },
-
     isInRole: function (role) {
         return this.roles.indexOf(role) !== -1;
     }

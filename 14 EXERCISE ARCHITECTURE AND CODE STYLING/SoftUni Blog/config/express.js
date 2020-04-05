@@ -32,12 +32,8 @@ module.exports = (app, config) => {
 
     app.use((req, res, next) => {
         if (req.user) {
-            res.locals.user = req.user;
-
-            if (res.locals.user.isInRole('Admin')) {
-                res.locals.isAdmin = res.locals.user.isInRole('Admin');
-            }
-
+            res.locals.isAuth = req.user.isInRole('User');
+            res.locals.isAuth = req.user.isInRole('Admin');
         }
         next();
     });

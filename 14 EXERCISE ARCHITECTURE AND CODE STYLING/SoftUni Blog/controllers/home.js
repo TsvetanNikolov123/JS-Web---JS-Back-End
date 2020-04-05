@@ -3,4 +3,4 @@ module.exports = {
     // TODO load all (if any) articles and pass them as context
     res.render('home/index');
   }
-}
+};
