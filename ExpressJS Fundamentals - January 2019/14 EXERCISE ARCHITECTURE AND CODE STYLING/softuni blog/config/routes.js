@@ -1,0 +1,24 @@
+const restrictedPages = require('../config/auth');
+const controllers = require('../controllers/index');
+
+module.exports = (app) => {
+    app.get('/', controllers.homeController.index);
+
+    // User routes
+    app.get('/user/register', restrictedPages.isAnonymous, controllers.userController.registerGet);
+    app.post('/user/register', restrictedPages.isAnonymous, controllers.userController.registerPost);
+    app.get('/user/login', restrictedPages.isAnonymous, controllers.userController.loginGet);
+    app.post('/user/login', restrictedPages.isAnonymous, controllers.userController.loginPost);
+    app.get('/user/logout', restrictedPages.isAuthed, controllers.userController.logout);
+
+    // Article routes
+    app.get('/article/create', restrictedPages.isAuthed, controllers.articleController.createGet);
+    app.get('/article/create', restrictedPages.isAuthed, controllers.articleController.createPost);
+    app.get('/article/details/:articleId', controllers.articleController.details);
+
+    app.get('/article/edit/:articleId', controllers.articleController.editGet);
+    app.post('/article/edit/:articleId', controllers.articleController.editPost);
+    app.get('/article/edit/:articleId', controllers.articleController.deleteGet);
+    app.post('/article/edit/:articleId', controllers.articleController.deletePost);
+};
+
